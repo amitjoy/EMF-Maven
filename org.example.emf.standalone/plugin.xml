@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated CollaborativeMDEProcess -->
+      <package
+            uri="http://collaborativemdeprocess/1.0"
+            class="collaborativemdeprocess.CollaborativemdeprocessPackage"
+            genModel="CollaborativeMDEProcess.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated production -->
+      <package
+            uri="http://www.example.org/production"
+            class="production.ProductionPackage"
+            genModel="model/production.genmodel"/>
+   </extension>
+
+</plugin>

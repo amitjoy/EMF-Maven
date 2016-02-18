@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/test-standalone-emf/src/main/java" modelPluginID="test-standalone-emf"
+    modelName="CollaborativeMDEProcess" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/test-standalone-emf.tests/src/main/test" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>model/CollaborativeMDEProcess.ecore</foreignModel>
+  <genPackages prefix="Collaborativemdeprocess" disposableProviderFactory="true" ecorePackage="CollaborativeMDEProcess.ecore#/">
+    <genClasses ecoreClass="CollaborativeMDEProcess.ecore#//Project">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Project/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Project/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Project/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Project/workgroups"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Project/participants"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Project/roles"/>
+    </genClasses>
+    <genClasses ecoreClass="CollaborativeMDEProcess.ecore#//Participant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Participant/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Participant/firstName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Participant/email"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Participant/lastName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Participant/roles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Participant/projects"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Participant/workgroups"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Participant/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CollaborativeMDEProcess.ecore#//Workgroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Workgroup/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Workgroup/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Workgroup/sessions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Workgroup/participants"/>
+    </genClasses>
+    <genClasses ecoreClass="CollaborativeMDEProcess.ecore#//Role">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Role/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Role/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Role/participants"/>
+    </genClasses>
+    <genClasses ecoreClass="CollaborativeMDEProcess.ecore#//Session">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Session/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CollaborativeMDEProcess.ecore#//Session/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//Session/acceptedRoles"/>
+    </genClasses>
+    <genClasses ecoreClass="CollaborativeMDEProcess.ecore#//MDEProcess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//MDEProcess/project"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CollaborativeMDEProcess.ecore#//MDEProcess/participants"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
