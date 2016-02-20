@@ -20,71 +20,17 @@ import emfswitch.Switch;
 
 public class App {
 
-	public static void main(String[] args) {
-
-		final String nsURI = "http://www.example.org/production";
-//		System.out.println(createEObject(nsURI, "Article"));
-
-		MyWeb web = ProductionFactory.eINSTANCE.createMyWeb();
-		web.setName("Mera Web");
-		web.eAdapters().add(new Observer1());
-		web.eAdapters().add(new Observer2());
-		printAttributeValues(web);
-		setStructuralFeatureValueReflectively(web,
-				ProductionPackage.Literals.MY_WEB__NAME.getName());
-		printAttributeValues(web);
-		getStructuralFeature(web,
-				ProductionPackage.Literals.MY_WEB__NAME.getName());
-		listAllContainedValues(web);
-		Webpage page = ProductionFactory.eINSTANCE.createWebpage();
-		EStructuralFeature feature = page.eClass().getEStructuralFeature(ProductionPackage.Literals.WEBPAGE__NAME.getName());
-		System.out.println(feature);
-		System.out.println(page);
-		EClass eClass = ProductionPackage.Literals.WEBPAGE;
-		System.out.println(EcoreUtil.create(eClass));
-		System.out.println(page.eGet(feature));
-		new Switch().doSwitch(web);
-	}
-
-	public static EObject createEObject(String nsURI, String name) {
-		EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
-		EClass eClass = (EClass) ePackage.getEClassifier(name);
+	public static EObject createEObject(final String nsURI, final String name) {
+		final EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
+		final EClass eClass = (EClass) ePackage.getEClassifier(name);
 		return EcoreUtil.create(eClass);
 	}
 
-	public static void printAttributeValues(EObject eObject) {
-		EClass eClass = eObject.eClass();
-		Iterator<EAttribute> iterator = eClass.getEAllAttributes().iterator();
+	public static void findObectContainer(final EObject eObject) {
+		final Iterator<EReference> iterator = eObject.eClass().getEAllReferences().iterator();
 
 		while (iterator.hasNext()) {
-			EAttribute attribute = iterator.next();
-			if (eObject.eIsSet(attribute))
-				System.out.println(eObject.eGet(attribute));
-		}
-	}
-
-	public static void setStructuralFeatureValueReflectively(EObject eObject,
-			String featureName) {
-		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(
-				featureName);
-		Objects.nonNull(featureName);
-		if (feature.getEType() == EcorePackage.Literals.ESTRING) {
-			eObject.eSet(feature, "Bamboo");
-		}
-	}
-
-	public static void getStructuralFeature(EObject eObject, String featureName) {
-		EStructuralFeature feature = eObject.eClass().getEStructuralFeature(
-				featureName);
-		System.out.println(eObject.eGet(feature));
-	}
-
-	public static void findObectContainer(EObject eObject) {
-		Iterator<EReference> iterator = eObject.eClass().getEAllReferences()
-				.iterator();
-
-		while (iterator.hasNext()) {
-			EReference reference = iterator.next();
+			final EReference reference = iterator.next();
 			Objects.nonNull(reference);
 
 			if (reference.isContainer()) {
@@ -93,11 +39,65 @@ public class App {
 		}
 	}
 
-	public static void listAllContainedValues(EObject eObject) {
-		Iterator<?> containmentIterator = eObject.eContents().iterator();
+	public static void getStructuralFeature(final EObject eObject, final String featureName) {
+		final EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
+		System.out.println(eObject.eGet(feature));
+	}
+
+	public static void listAllContainedValues(final EObject eObject) {
+		final Iterator<?> containmentIterator = eObject.eContents().iterator();
 		while (containmentIterator.hasNext()) {
-			EObject feature = (EObject) containmentIterator.next();
+			final EObject feature = (EObject) containmentIterator.next();
 			System.out.println(feature);
+		}
+	}
+
+	public static void main(final String[] args) {
+
+		final String nsURI = "http://www.example.org/production";
+		// System.out.println(createEObject(nsURI, "Article"));
+
+		final MyWeb web = ProductionFactory.eINSTANCE.createMyWeb();
+		web.setName("Mera Web");
+		web.eAdapters().add(new Observer1());
+		web.eAdapters().add(new Observer2());
+		printAttributeValues(web);
+		setStructuralFeatureValueReflectively(web, ProductionPackage.Literals.MY_WEB__NAME.getName());
+		printAttributeValues(web);
+		getStructuralFeature(web, ProductionPackage.Literals.MY_WEB__NAME.getName());
+		listAllContainedValues(web);
+		final Webpage page = ProductionFactory.eINSTANCE.createWebpage();
+		final EStructuralFeature feature = page.eClass()
+				.getEStructuralFeature(ProductionPackage.Literals.WEBPAGE__NAME.getName());
+		System.out.println(feature);
+		System.out.println(page);
+		final EClass eClass = ProductionPackage.Literals.WEBPAGE;
+		System.out.println(EcoreUtil.create(eClass));
+		System.out.println(page.eGet(feature));
+		new Switch().doSwitch(web);
+
+		final ProductionPackage productionPackage = ProductionFactory.eINSTANCE.getProductionPackage();
+		productionPackage.getEClassifiers().stream().filter(cfr -> cfr instanceof EClass)
+				.forEach(System.out::println);
+	}
+
+	public static void printAttributeValues(final EObject eObject) {
+		final EClass eClass = eObject.eClass();
+		final Iterator<EAttribute> iterator = eClass.getEAllAttributes().iterator();
+
+		while (iterator.hasNext()) {
+			final EAttribute attribute = iterator.next();
+			if (eObject.eIsSet(attribute)) {
+				System.out.println(eObject.eGet(attribute));
+			}
+		}
+	}
+
+	public static void setStructuralFeatureValueReflectively(final EObject eObject, final String featureName) {
+		final EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
+		Objects.nonNull(featureName);
+		if (feature.getEType() == EcorePackage.Literals.ESTRING) {
+			eObject.eSet(feature, "Bamboo");
 		}
 	}
 
